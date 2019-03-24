@@ -1,0 +1,46 @@
+﻿@model IEnumerable<TestMVC.Models.ViewProduct>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="display table table-striped table-bordered table-responsive">
+    <thead>
+        <tr>
+            <td>Category Name</td>
+            <td>Product Name</td>
+            <td>Product Price</td>
+            <td>Product Description</td>
+            <td>Image</td>
+            <td>Quantity</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.CategoryVM.cname</td>
+                <td>@item.ProductVM.pname</td>
+                <td>@item.ProductVM.pprice</td>
+                <td>@item.ProductVM.pdescription</td>
+                <td><img alt="@item.ProductVM.images" src="@Url.Content(item.ProductVM.ImageURL)" /></td>
+                <td>@item.ProductVM.Quantity</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Product", new { id = item.ProductVM.pid })" data-toggle="tooltip" data-placement="top">Edit</a>
+                </td>
+                <td>
+                    @*@using (Html.BeginForm("Delete", "Category", new { id = item.cid }))
+                        {
+                            <input type="submit" value="Delete" />
+                        }*@
+                    <a href="@Url.Action("Delete", "Product", new { id = item.ProductVM.pid })" data-toggle="tooltip" data-placement="top">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

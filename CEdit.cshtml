@@ -1,0 +1,27 @@
+﻿@model TestMVC.Models.Category
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Category", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.cid)
+    @Html.LabelFor(m => m.cname, new { @class = "control-label" })
+    @Html.TextBoxFor(m => m.cname, new { @class = "form-control" })
+
+    @Html.LabelFor(m => m.cdescription, new { @class = "control-label" })
+    @Html.TextBoxFor(m => m.cdescription, new { @class = "form-control" })
+
+    <input type="submit" name="Submit" value="Submit" class="btn btn-outline-primary" />
+}
+
+@if (ViewBag.Message != null)
+{
+
+    <script>
+    window.alert('@ViewBag.Message');
+    window.location.href = "@Url.Action("Index", "Category")";
+    </script>
+}
